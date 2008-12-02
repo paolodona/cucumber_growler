@@ -9,6 +9,7 @@ module CucumberGrowler
       include InstanceMethods
 
       def dump
+        original_dump
         if @failed.length > 0
           gwl_fail "#{@failed.length} steps failed"
         elsif @pending_steps.length > 0
@@ -16,7 +17,6 @@ module CucumberGrowler
         else 
           gwl_pass "#{@passed.length} steps passed"
         end 
-        original_dump
       end
       
     end    
@@ -24,7 +24,7 @@ module CucumberGrowler
   
   module InstanceMethods
     def growl(title, msg, img, pri=0, sticky="")
-      system "growlnotify -n 'Cucumber features' --image #{img} -p #{pri} -d '#{Time.now.to_s}' -m '#{msg}' #{title}"
+      system "growlnotify -n 'Cucumber features' --image #{img} -p #{pri} -d '#{Time.now.to_s}' -w -m '#{msg}' #{title}"
     end
 
     def gwl_fail(message)

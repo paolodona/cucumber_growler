@@ -11,8 +11,8 @@ module CucumberGrowler
       def dump
         if @failed.length > 0
           gwl_fail "#{@failed.length} steps failed"
-        elsif @pending.length > 0
-          gwl_pending "#{@pending.length} steps pending, #{@passed.length} passed"
+        elsif @pending_steps.length > 0
+          gwl_pending "#{@pending_steps.length} steps pending, #{@passed.length} passed"
         else 
           gwl_pass "#{@passed.length} steps passed"
         end 
